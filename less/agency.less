@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media(min-width:768px) {
     .navbar-custom {
-    	background-color: black;
+    	background-color: @gray-darker;
         padding: 25px 0;
         -webkit-transition: padding 0.3s;
         -moz-transition: padding 0.3s;
@@ -167,7 +167,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 header {
-	background-color: @gray-darker;
+	background-color: @gray-dark;
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
@@ -179,7 +179,7 @@ header {
 		padding-bottom: 50px;
 		.intro-lead-in {
 			.serif-font;
-			font-style: italic;
+			// font-style: italic;
 			font-size: 22px;
 			line-height: 22px;
 			margin-bottom: 25px;
@@ -252,6 +252,7 @@ section {
 // Portfolio Section
 
 #portfolio {
+	background-color: @gray-lighter;
     .portfolio-item {
         margin: 0 0 15px;
         right: 0;
@@ -535,7 +536,7 @@ aside.clients {
 // Contact Section
 
 section#contact {
-	background-color: @gray-darker;
+	background-color: @gray-dark;
 	background-position: center;
 	background-repeat: no-repeat;
 	.section-heading {
@@ -681,7 +682,7 @@ ul.social-buttons {
             height:75px;
             width:1px;
             margin-left:35px;
-            background-color:@gray-darker;
+            background-color:@gray-lighter;
             transform: rotate(45deg);
             -ms-transform: rotate(45deg);
             /* IE 9 */
@@ -691,7 +692,7 @@ ul.social-buttons {
             .rl {
                 height:75px;
                 width:1px;
-                background-color:@gray-darker;
+                background-color:@gray-lighter;
                 transform: rotate(90deg);
                 -ms-transform: rotate(90deg);
                 /* IE 9 */

@@ -200,7 +200,7 @@ fieldset[disabled] .btn-xl.active {
 }
 @media (min-width: 768px) {
   .navbar-custom {
-    background-color: black;
+    background-color: #222222;
     padding: 25px 0;
     -webkit-transition: padding 0.3s;
     -moz-transition: padding 0.3s;
@@ -227,7 +227,7 @@ fieldset[disabled] .btn-xl.active {
   }
 }
 header {
-  background-color: #222222;
+  background-color: #333333;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -244,7 +244,6 @@ header .intro-text {
 }
 header .intro-text .intro-lead-in {
   font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: italic;
   font-size: 22px;
   line-height: 22px;
   margin-bottom: 25px;
@@ -302,6 +301,9 @@ section h3.section-subheading {
 .service-heading {
   margin: 15px 0;
   text-transform: none;
+}
+#portfolio {
+  background-color: #eeeeee;
 }
 #portfolio .portfolio-item {
   margin: 0 0 15px;
@@ -555,7 +557,7 @@ aside.clients img {
   margin: 50px auto;
 }
 section#contact {
-  background-color: #222222;
+  background-color: #333333;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -699,7 +701,7 @@ ul.social-buttons li a:active {
   height: 75px;
   width: 1px;
   margin-left: 35px;
-  background-color: #222222;
+  background-color: #eeeeee;
   transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   /* IE 9 */
@@ -710,7 +712,7 @@ ul.social-buttons li a:active {
 .portfolio-modal .close-modal .lr .rl {
   height: 75px;
   width: 1px;
-  background-color: #222222;
+  background-color: #eeeeee;
   transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   /* IE 9 */
