@@ -1,8 +1,8 @@
 // Assigning modules to local variables
 var gulp = require('gulp');
 var less = require('gulp-less');
-var browserSync = require('browser-sync').create();
 var header = require('gulp-header');
+var browserSync = require('browser-sync').create();
 var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
@@ -79,10 +79,6 @@ gulp.task('fontawesome', function() {
         .pipe(gulp.dest('vendor/font-awesome'))
 })
 
-// Copy all third party dependencies from node_modules to vendor directory
-gulp.task('copy', ['bootstrap', 'jquery', 'fontawesome']);
-
-// Configure the browserSync task
 gulp.task('browserSync', function() {
     browserSync.init({
         server: {
@@ -91,12 +87,8 @@ gulp.task('browserSync', function() {
     })
 })
 
+// Copy all third party dependencies from node_modules to vendor directory
+gulp.task('copy', ['bootstrap', 'jquery', 'fontawesome']);
+
 // Watch Task that compiles LESS and watches for HTML or JS changes and reloads with browserSync
-gulp.task('dev', ['browserSync', 'less', 'minify-css', 'minify-js'], function() {
-    gulp.watch('less/*.less', ['less']);
-    gulp.watch('css/*.css', ['minify-css']);
-    gulp.watch('js/*.js', ['minify-js']);
-    // Reloads the browser whenever HTML or JS files change
-    gulp.watch('*.html', browserSync.reload);
-    gulp.watch('js/**/*.js', browserSync.reload);
-});
+gulp.task('dev', ['browserSync', 'less', 'minify-css', 'minify-js']);

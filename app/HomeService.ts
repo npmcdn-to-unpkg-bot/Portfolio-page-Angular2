@@ -9,21 +9,22 @@ export class HomeService {
     
     constructor (private http: Http) {}
 
-    private postUrl = 'http://localhost:51216/api/SaveMessages';
+    private postUrl = 'http://localhost:51216/api/GetMessages';
     
-    submit(email: string, fullname: string, phone: string, message: string) {
-        let body = JSON.stringify({ email, fullname, phone, message });
+    newMsg(Email: string, Fullname: string, Phone: string, Message: string) {
+        let body = JSON.stringify({ "Email": Email, "Fullname": Fullname, "Phone": Phone, "Message": Message });
         let headers = new Headers ({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         return this.http.post(this.postUrl, body, options)
-                        .map(this.extractData)
-                        .catch(this.handleError)
+                        .toPromise()
+                        .then((res) => alert('Reservation added'))
+                        .catch((error) => alert('Something went wrong'));
     }
 
     private extractData(res: Response) {
         let body = res.json();
-        return body.data || { };
+        return body.data;
     }
 
     private handleError (error: any) {
@@ -32,6 +33,6 @@ export class HomeService {
         let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
         console.error(errMsg); // log to console instead
-        return Observable.throw(errMsg);
+        return Promise.reject(errMsg);
     }
 }

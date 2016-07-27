@@ -13,7 +13,7 @@ using System;
 
 namespace PortfolioBackend.Controllers
 {
-    [EnableCors(origins: "http://mywebclient.azurewebsites.net", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MessageController : ApiController
     {
         // GET: api/Reservations
@@ -29,9 +29,9 @@ namespace PortfolioBackend.Controllers
             }
         }
 
-        [Route("api/SaveMessages")]
+        [Route("api/GetMessages")]
         [HttpPost]
-        public HttpResponseMessage SaveMessage([FromBody] UserContactInfo m)
+        public async Task<IHttpActionResult> SaveMessage(UserContactInfo m)
         {
             using (var db = new PortfolioPageEntities1())
             {
@@ -45,23 +45,30 @@ namespace PortfolioBackend.Controllers
                 m.DATETIME = DateTime.Now.ToString();
 
                 db.UserContactInfo.Add(m);
-                db.SaveChanges();
 
+                try
+                {
+                    await db.SaveChangesAsync();
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
+                return StatusCode(HttpStatusCode.Created);
 
                 //var response = Request.CreateResponse(HttpStatusCode.Created);
 
                 //string uri = Url.Link("GetMessages", new { fullname = m.Fullname, email = m.Email, message = m.Message });
                 //response.Headers.Location = new Uri(uri);
                 //return response;
+                //var response = Request.CreateResponse(HttpStatusCode.Created);
 
-
+                //// Generate a link to the new book and set the Location header in the response.
+                //string uri = Url.Link("GetMessages", new { fullname = m.FULLNAME, email = m.EMAIL, message = m.MESSAGE, phone = m.PHONE });
+                //response.Headers.Location = new Uri(uri);
+                //return response;
             }
-            var response = Request.CreateResponse(HttpStatusCode.Created);
 
-            //// Generate a link to the new book and set the Location header in the response.
-            string uri = Url.Link("GetMessages", new { fullname = m.FULLNAME, email = m.EMAIL, message = m.MESSAGE, phone = m.PHONE });
-            response.Headers.Location = new Uri(uri);
-            return response;
         }
     }
 }

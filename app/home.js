@@ -9,21 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var home_1 = require('./home');
-// RxJs Observable operators
-require('./rxjs-operators');
-var AppComponent = (function () {
-    function AppComponent() {
+var HomeService_1 = require('./HomeService');
+var Home = (function () {
+    function Home(homeService) {
+        this.homeService = homeService;
+        this.matchPattern = new RegExp('^[^\\d &\/\\#,+()$~%.:;_*?<>{} ]+[^\\d &\/\\#,+()$~%.:;_*?<>{} ]$');
+        this.emailPattern = new RegExp('[^\d &\/\\#,+()$~%:;_*?<>{} .0-9]$');
+        this.postUrl = 'http://localhost:51216/api/GetMessages';
     }
-    AppComponent = __decorate([
+    Home.prototype.newMsg = function () {
+        this.homeService.newMsg(this.email, this.fullname, this.phone, this.message);
+    };
+    Home = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: '<contactForm></contactForm>',
-            directives: [home_1.Home],
+            selector: 'contactForm',
+            templateUrl: 'app/home.html',
+            providers: [HomeService_1.HomeService]
         }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [HomeService_1.HomeService])
+    ], Home);
+    return Home;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.Home = Home;
+//# sourceMappingURL=home.js.map
